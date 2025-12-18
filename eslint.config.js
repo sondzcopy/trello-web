@@ -48,6 +48,8 @@ export default [
             'patterns': [{ 'regex': '^@mui/[^/]+$' }]
           }
         ],
+      'react/jsx-uses-react': 'error',
+      'react/jsx-uses-vars': 'error',
       'no-console': 1,
       'no-lonely-if': 1,
       'no-unused-vars': 1,
