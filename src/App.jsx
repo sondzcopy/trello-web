@@ -36,17 +36,17 @@ function ModeSelect() {
         onChange={handleChange}
       >
         <MenuItem value="light">
-          <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <LightModeIcon fontSize ="small"/> Light
           </div>
         </MenuItem>
         <MenuItem value="dark">
-          <Box sx = {{display: 'flex', alignItems: 'center', gap: 1}}>
+          <Box sx = {{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <DarkModeOutlinedIcon fontSize ="small"/> Dark
           </Box>
         </MenuItem>
         <MenuItem value="system">
-          <Box sx = {{display: 'flex', alignItems: 'center', gap: 2}}>
+          <Box sx = {{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <SettingsBrightnessIcon fontSize ="small"/> System
           </Box>
         </MenuItem>
