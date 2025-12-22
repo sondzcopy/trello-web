@@ -62,6 +62,12 @@ function ModeToggle() {
   // console.log('prefersDarkModel: ', prefersDarkModel)
   // console.log('prefersLightModel: ', prefersLightModel)
 
+
+import { useColorScheme } from '@mui/material/styles'
+
+function ModeToggle() {
+  const { mode, setMode } = useColorScheme()
+  
   return (
     <Button
       variant="outlined"
