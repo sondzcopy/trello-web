@@ -1,0 +1,37 @@
+[33m8f59c6a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31msondzcopy/master[m[33m, [m[1;31msondzcopy/HEAD[m[33m)[m HEAD@{0}: pull sondzcopy master: Fast-forward
+[33mdcc1ad9[m HEAD@{1}: checkout: moving from refector_project_structure to master
+[33m37e98c7[m[33m ([m[1;31msondzcopy/refector_project_structure[m[33m, [m[1;32mrefector_project_structure[m[33m)[m HEAD@{2}: commit (amend): refector_project_structure
+[33m9d55356[m HEAD@{3}: commit (amend): refector_project_structure
+[33m15e71a2[m HEAD@{4}: commit (amend): refector_project_structure
+[33m256cf9d[m HEAD@{5}: commit (amend): refector_project_structure
+[33m5937058[m HEAD@{6}: commit: refector_project_structure
+[33mdcc1ad9[m HEAD@{7}: checkout: moving from master to refector_project_structure
+[33mdcc1ad9[m HEAD@{8}: commit: Trello
+[33ma836a8e[m HEAD@{9}: checkout: moving from master to master
+[33ma836a8e[m HEAD@{10}: commit: CapNhat2
+[33m8803af8[m HEAD@{11}: commit: capNhat
+[33m53ca2e3[m HEAD@{12}: pull sondzcopy master: Fast-forward
+[33mfd2c50d[m HEAD@{13}: checkout: moving from master to master
+[33mfd2c50d[m HEAD@{14}: checkout: moving from master to master
+[33mfd2c50d[m HEAD@{15}: checkout: moving from dark_light_p2 to master
+[33me045278[m[33m ([m[1;31msondzcopy/dark_light_p2[m[33m)[m HEAD@{16}: commit: dark_light_p2
+[33mfd2c50d[m HEAD@{17}: checkout: moving from master to dark_light_p2
+[33mfd2c50d[m HEAD@{18}: checkout: moving from dark_light_p1 to master
+[33m4d75d8e[m HEAD@{19}: pull sondzcopy master: Fast-forward
+[33mdb302de[m[33m ([m[1;31msondzcopy/dark_light_p1[m[33m)[m HEAD@{20}: commit: dark_light
+[33mfd2c50d[m HEAD@{21}: checkout: moving from master to dark_light_p1
+[33mfd2c50d[m HEAD@{22}: pull sondzcopy master: Fast-forward
+[33m577fabf[m HEAD@{23}: checkout: moving from config_mui_theme to master
+[33m068ce1b[m[33m ([m[1;31msondzcopy/config_mui_theme[m[33m)[m HEAD@{24}: commit: config_mui_theme
+[33m577fabf[m HEAD@{25}: checkout: moving from master to config_mui_theme
+[33m577fabf[m HEAD@{26}: pull sondzcopy master: Fast-forward
+[33m05976a0[m HEAD@{27}: checkout: moving from add_css_base_line to master
+[33m964b9a8[m[33m ([m[1;31msondzcopy/add_css_base_line[m[33m)[m HEAD@{28}: commit: Add CSS baseline
+[33m05976a0[m HEAD@{29}: checkout: moving from master to add_css_base_line
+[33m05976a0[m HEAD@{30}: checkout: moving from add_import_eslint to master
+[33m9959efc[m[33m ([m[1;31msondzcopy/add_import_eslint[m[33m)[m HEAD@{31}: checkout: moving from add_import_eslint to add_import_eslint
+[33m9959efc[m[33m ([m[1;31msondzcopy/add_import_eslint[m[33m)[m HEAD@{32}: commit: Inint add_import eslint
+[33m05976a0[m HEAD@{33}: checkout: moving from add_import_eslint to add_import_eslint
+[33m05976a0[m HEAD@{34}: checkout: moving from master to add_import_eslint
+[33m05976a0[m HEAD@{35}: commit: Init project #2
+[33m5b1d82a[m HEAD@{36}: commit (initial): Init project
