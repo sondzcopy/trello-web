@@ -32,7 +32,7 @@ function Profile() {
           aria-expanded={open ? 'true' : undefined}
         >
           <Avatar
-            sx={{ width: 34, height: 34 }}
+            sx={{ width: 38, height: 38 }}
             alt = "Sondz"
             src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"
           />
