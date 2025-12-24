@@ -1,15 +1,107 @@
 import Box from '@mui/material/Box'
-
+import Chip from '@mui/material/Chip'
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import VpnLockIcon from '@mui/icons-material/VpnLock'
+import AddToDriveIcon from '@mui/icons-material/AddToDrive'
+import BoltIcon from '@mui/icons-material/Bolt'
+import FilterListIcon from '@mui/icons-material/FilterList'
+import Avatar from '@mui/material/Avatar'
+import AvatarGroup from '@mui/material/AvatarGroup'
+import Tooltip from '@mui/material/Tooltip'
+import Button from '@mui/material/Button'
+import PersonAddIcon from '@mui/icons-material/PersonAdd'
+const MENU_STYLES = {
+  color: 'primary.main',
+  bgcolor: 'while',
+  paddingX: '5px',
+  borderRadius: '4px',
+  '& .MuiSvgIcon-root': {
+    color: 'primary.main'
+  },
+  '&:hover': {
+    bgcolor: 'primary.50'
+  }
+}
 function BoardBar() {
   return (
     <Box sx={{
-      backgroundColor: 'primary.dark',
       width: '100%',
       height: (theme) => theme.trello.boardBarHeight,
       display: 'flex',
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 2,
+      paddingX: 2,
+      overflowX: 'auto',
+      borderTop: '1px solid #00bfa5'
     }}>
-        Board bar
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Chip
+          sx = {MENU_STYLES}
+          icon={<DashboardIcon />}
+          label="SonDev MERN stack"
+          clickable
+        />
+        <Chip
+          sx = {MENU_STYLES}
+          icon={<VpnLockIcon />}
+          label="Public/Private Workspace"
+          clickable
+        />
+        <Chip
+          sx = {MENU_STYLES}
+          icon={<AddToDriveIcon />}
+          label="App to Google Drive"
+          clickable
+        />
+        <Chip
+          sx = {MENU_STYLES}
+          icon={<BoltIcon />}
+          label="Automation"
+          clickable
+        />
+        <Chip
+          sx = {MENU_STYLES}
+          icon={<FilterListIcon />}
+          label="Filters"
+          clickable
+        />
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Button variant="outlined" startIcon={< PersonAddIcon />}>Invite</Button>
+        <AvatarGroup
+          max={5}
+          sx = {{
+            '& .MuiAvatar-root': {
+              width: '34px',
+              height: '34px',
+              fontSize: '16px'
+            }
+          }}
+        >
+          <Tooltip title='Sondz'>
+            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
+          </Tooltip>
+          <Tooltip title='Sondz'>
+            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
+          </Tooltip>
+          <Tooltip title='Sondz'>
+            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
+          </Tooltip>
+          <Tooltip title='Sondz'>
+            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
+          </Tooltip>
+          <Tooltip title='Sondz'>
+            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
+          </Tooltip>
+          <Tooltip title='Sondz'>
+            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
+          </Tooltip>
+          <Tooltip title='Sondz'>
+            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
+          </Tooltip>
+        </AvatarGroup>
+      </Box>
     </Box>
   )
 }
