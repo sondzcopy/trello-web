@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box'
 import Column from './Column/Column'
-import { Button } from '@mui/material'
+import Button from '@mui/material/Button'
 import NoteAddIcon from '@mui/icons-material/NoteAdd'
 function ListColumns() {
   return (
