@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
-import ModeSelect from '~/components/ModeSelect'
+import ModeSelect from '~/components/ModeSelect/ModeSelect'
 import AppsIcon from '@mui/icons-material/Apps'
 import TrelloLego from '~/assets/trello.svg?react'
 import SvgIcon from '@mui/material/SvgIcon'
@@ -34,7 +34,7 @@ function AppBar() {
       gap: 2,
       paddingX: 2,
       overflowX: 'auto',
-      bgcolor: mode === 'dark' ? '#34495e' : '#1976d2',
+      bgcolor: mode === 'dark' ? '#34495e' : '#0056acff',
       '&::-webkit-scrollbar-track': { m: 2 }
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

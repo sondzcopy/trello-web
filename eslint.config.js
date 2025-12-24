@@ -43,11 +43,11 @@ export default [
       'react/prop-types': 0,
       'react/display-name': 0,
       'no-restricted-imports': [
-      'error',
-          {
-            'patterns': [{ 'regex': '^@mui/[^/]+$' }]
-          }
-        ],
+        'error',
+        {
+          'patterns': [{ 'regex': '^@mui/[^/]+$' }]
+        }
+      ],
       'react/jsx-uses-react': 'error',
       'react/jsx-uses-vars': 'error',
       'no-console': 1,
