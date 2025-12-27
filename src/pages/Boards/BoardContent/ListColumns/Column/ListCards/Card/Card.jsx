@@ -39,7 +39,15 @@ function Card({ card }) {
       sx={{
         cursor: 'pointer',
         boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-        overflow: 'unset'
+        overflow: 'unset',
+        // CHỈNH SỬA Ở ĐÂY:
+        // Thay vì display: card?.FE_PlayceholderCard ? 'none' : 'block'
+        // Chúng ta dùng opacity và height
+        opacity: card?.FE_PlayceholderCard ? 0 : 1,
+        height: card?.FE_PlayceholderCard ? '0px' : 'unset',
+        minHeight: card?.FE_PlayceholderCard ? '0px' : 'unset',
+        pointerEvents: card?.FE_PlayceholderCard ? 'none' : 'auto', // Để không tương tác chuột trực tiếp vào nó
+        marginBottom: card?.FE_PlayceholderCard ? '0px' : '8px'
       }}
     >
       {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}

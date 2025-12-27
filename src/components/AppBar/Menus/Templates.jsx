@@ -33,7 +33,7 @@ function Templates() {
         onClick={handleClick}
         endIcon = {<KeyboardArrowDownIcon />}
       >
-        Workspaces
+        Template
       </Button>
       <Menu
         id="basic-menu-workspaces"
