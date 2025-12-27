@@ -33,7 +33,7 @@ function Starred() {
         onClick={handleClick}
         endIcon = {<KeyboardArrowDownIcon />}
       >
-        Workspaces
+        Starred
       </Button>
       <Menu
         id="basic-menu-workspaces"
