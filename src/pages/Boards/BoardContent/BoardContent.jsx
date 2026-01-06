@@ -6,14 +6,15 @@ import { mapOrder } from '~/utils/sorts'
 import {
   DndContext,
   // PointerSensor,
-  MouseSensor,
-  TouchSensor,
+  // MouseSensor,
+  // TouchSensor,
   useSensor,
   DragOverlay,
   defaultDropAnimationSideEffects,
   closestCorners
   // useSensors
 } from '@dnd-kit/core'
+import { MouseSensor, TouchSensor } from '~/customLibraries/DndKitSensors'
 import { useMemo } from 'react'
 import { arrayMove } from '@dnd-kit/sortable'
 import { useEffect, useState } from 'react'

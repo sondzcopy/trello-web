@@ -47,7 +47,9 @@ function Card({ card }) {
         height: card?.FE_PlayceholderCard ? '0px' : 'unset',
         minHeight: card?.FE_PlayceholderCard ? '0px' : 'unset',
         pointerEvents: card?.FE_PlayceholderCard ? 'none' : 'auto', // Để không tương tác chuột trực tiếp vào nó
-        marginBottom: card?.FE_PlayceholderCard ? '0px' : '8px'
+        marginBottom: card?.FE_PlayceholderCard ? '0px' : '8px',
+        border: '1px solid transparent',
+        '&:hover': { borderColor: (theme) => theme.palette.primary.main }
       }}
     >
       {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
