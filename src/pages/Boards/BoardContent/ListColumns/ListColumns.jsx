@@ -1,4 +1,5 @@
 import React from 'react'
+import { toast } from 'react-toastify'
 import Box from '@mui/material/Box'
 import Column from './Column/Column'
 import Button from '@mui/material/Button'
@@ -14,7 +15,7 @@ function ListColumns({ columns }) {
   const [newColumnTitle, setNewColumnTitle] = useState('')
   const addNewColumn = () => {
     if (!newColumnTitle) {
-      // console.error('Column title is required')
+      toast.error('Column title is required')
       return
     }
     // Call API to add new column
