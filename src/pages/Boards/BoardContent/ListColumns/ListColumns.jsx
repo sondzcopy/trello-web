@@ -9,18 +9,27 @@ import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortabl
 import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
 
-function ListColumns({ columns }) {
+function ListColumns({ columns, createNewColumn, createNewCard }) {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
   const toggleOpenNewColumnForm = () => { setOpenNewColumnForm(!openNewColumnForm)}
   const [newColumnTitle, setNewColumnTitle] = useState('')
-  const addNewColumn = () => {
+  const addNewColumn = async () => {
     if (!newColumnTitle) {
       toast.error('Column title is required')
       return
     }
-    // Call API to add new column
-    // console.log('New column added:', newColumnTitle)
-    //  Đóng trạng thái thêm Column mới & Clear Input
+    // tạo dữ liệu column để gọi api
+    const newColumnData = {
+      title: newColumnTitle
+    }
+    /**
+     * Gọi lên props function createNewColumn nằm ở component cha cao nhất (board/_id.jsx)
+     * Lưu ý: về sau ở phần Advance sẽ đưa dữ liệu Board ra ngoài Redux Global Store,
+     * Thì lúc này chúng ta có thể gọi luôn API ở đây xong thay vì phải lần lượt gọi ngược lên những 
+     * component cha phía trên. (đối với cpn con nằm càn sâu thì càng khổ)
+     * Với vệ sử dụng Redux như vậy thì code sẽ Clean chuẩn chỉnh hơn rất nhiều
+     * **/
+    await createNewColumn(newColumnData)
     toggleOpenNewColumnForm()
     setNewColumnTitle('')
   }
@@ -40,7 +49,7 @@ function ListColumns({ columns }) {
         overflowY: 'hidden',
         '&::-webkit-scrollbar-track': { m: 2 }
       }}>
-        {columns?.map( column => <Column key ={column._id} column ={column}/>)}
+        {columns?.map( column => <Column key ={column._id} column ={column} createNewCard ={createNewCard}/>)}
         {!openNewColumnForm
           ? <Box onClick={toggleOpenNewColumnForm} sx ={{
             minWidth: '200px',

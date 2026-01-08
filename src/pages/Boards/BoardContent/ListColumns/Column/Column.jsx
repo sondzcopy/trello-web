@@ -27,7 +27,7 @@ import { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
 
-function Column({ column }) {
+function Column({ column, createNewCard }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: column._id,
     data: { ...column }
@@ -48,11 +48,24 @@ function Column({ column }) {
   const [openNewCardForm, setOpenNewCardForm] = useState(false)
   const toggleOpenNewCardForm = () => { setOpenNewCardForm(!openNewCardForm)}
   const [newCardTitle, setNewCardTitle] = useState('')
-  const addNewCard = () => {
+  const addNewCard = async () => {
     if (!newCardTitle) {
       // console.error('Card title is required')
       return
     }
+    // tạo dữ liệu card để gọi api
+    const newCardData = {
+      title: newCardTitle,
+      columnId: column._id
+    }
+    /**
+     * Gọi lên props function createNewColumn nằm ở component cha cao nhất (board/_id.jsx)
+     * Lưu ý: về sau ở phần Advance sẽ đưa dữ liệu Board ra ngoài Redux Global Store,
+     * Thì lúc này chúng ta có thể gọi luôn API ở đây xong thay vì phải lần lượt gọi ngược lên những 
+     * component cha phía trên. (đối với cpn con nằm càn sâu thì càng khổ)
+     * Với vệ sử dụng Redux như vậy thì code sẽ Clean chuẩn chỉnh hơn rất nhiều
+     * **/
+    await createNewCard(newCardData)
     // Call API to add new Card
     // console.log('New Card added:', newCardTitle)
     //  Đóng trạng thái thêm Card mới & Clear Input
