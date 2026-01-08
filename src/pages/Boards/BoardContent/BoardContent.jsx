@@ -27,7 +27,7 @@ const ACTIVE_DRAG_ITEM_TYPE ={
   CARD: 'ACTIVE_DRAG_ITEM_TYPE_CARD'
 }
 
-function BoardContent({ board, createNewColumn, createNewCard }) {
+function BoardContent({ board, createNewColumn, createNewCard, moveColumns }) {
 
 
   // const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
@@ -235,10 +235,17 @@ function BoardContent({ board, createNewColumn, createNewCard }) {
         // dùng ArryMove của dnd-kit để sắp xếp mảng ban đầu
         // Dùng hàm arrayMove của dnd-kit để tạo mảng mới
         const dndOrderedColumns = arrayMove(orderedColumns, oldColumnIndex, newColumnIndex)
-        // const dndOrderedColumnsId = dndOrderedColumns.map(c => c._id)
-        // console.log('dndOrderedColumns: ', dndOrderedColumns)
 
+        /**
+         * Gọi props fuction moveColumns nằm ở Component cha cao nhất (board/_id)
+          * Lưu ý: về sau ở phần Advance sẽ đưa dữ liệu Board ra ngoài Redux Global Store,
+          * Thì lúc này chúng ta có thể gọi luôn API ở đây xong thay vì phải lần lượt gọi ngược lên những
+          * component cha phía trên. (đối với cpn con nằm càn sâu thì càng khổ)
+          * Với vệ sử dụng Redux như vậy thì code sẽ Clean chuẩn chỉnh hơn rất nhiều
+          * **/
+        moveColumns(dndOrderedColumns)
 
+        // vẫn gọi update state ở đây để tránh delay hoặc Flicker giao diện lúc kéo thả cần phải chờ gọi API (small strick)
         // 3. Cập nhật lại State để giao diện thay đổi ngay lập tức
         setOrderedColumns(dndOrderedColumns)
       }

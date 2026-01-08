@@ -25,7 +25,7 @@ function ListColumns({ columns, createNewColumn, createNewCard }) {
     /**
      * Gọi lên props function createNewColumn nằm ở component cha cao nhất (board/_id.jsx)
      * Lưu ý: về sau ở phần Advance sẽ đưa dữ liệu Board ra ngoài Redux Global Store,
-     * Thì lúc này chúng ta có thể gọi luôn API ở đây xong thay vì phải lần lượt gọi ngược lên những 
+     * Thì lúc này chúng ta có thể gọi luôn API ở đây xong thay vì phải lần lượt gọi ngược lên những
      * component cha phía trên. (đối với cpn con nằm càn sâu thì càng khổ)
      * Với vệ sử dụng Redux như vậy thì code sẽ Clean chuẩn chỉnh hơn rất nhiều
      * **/
