@@ -137,7 +137,7 @@ function BoardContent({
           * Với vệ sử dụng Redux như vậy thì code sẽ Clean chuẩn chỉnh hơn rất nhiều
           * **/
       /**
-       * phải dùng tới activeDragItemData.columnId hoặc tốt nhất là oldColumnWhenDraggingCard._id 
+       * phải dùng tới activeDragItemData.columnId hoặc tốt nhất là oldColumnWhenDraggingCard._id
        * Set vào State từ bước handleDragStart chứ ko pahir activeData trong scope handleDragEnd này vì
        * sau khi đi qua onDragOver và tới đây thì state của card đã bị cập nhật 1 lần rồi
       */
