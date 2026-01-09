@@ -19,7 +19,6 @@ import Button from '@mui/material/Button'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import ListCards from './ListCards/ListCards'
 import theme from '~/theme'
-import { mapOrder } from '~/utils/sorts'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
@@ -43,12 +42,13 @@ function Column({ column, createNewCard }) {
     opacity: isDragging ? 0.5 : undefined
   }
   //
-  const orderedCard = mapOrder(column?.cards, column?.cardOrderIds, '_id')
+  const orderedCard = column?.cards
 
   const [openNewCardForm, setOpenNewCardForm] = useState(false)
   const toggleOpenNewCardForm = () => { setOpenNewCardForm(!openNewCardForm)}
   const [newCardTitle, setNewCardTitle] = useState('')
-  const addNewCard = async () => {
+
+  const addNewCard = () => {
     if (!newCardTitle) {
       // console.error('Card title is required')
       return
@@ -65,7 +65,8 @@ function Column({ column, createNewCard }) {
      * component cha phía trên. (đối với cpn con nằm càn sâu thì càng khổ)
      * Với vệ sử dụng Redux như vậy thì code sẽ Clean chuẩn chỉnh hơn rất nhiều
      * **/
-    await createNewCard(newCardData)
+    // khi nào cần lấy data làm cái gì đó thì chúng ta dùng await on ko thì bỏ đi cx được
+    createNewCard(newCardData)
     // Call API to add new Card
     // console.log('New Card added:', newCardTitle)
     //  Đóng trạng thái thêm Card mới & Clear Input
