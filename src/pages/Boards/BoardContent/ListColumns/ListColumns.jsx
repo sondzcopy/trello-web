@@ -8,11 +8,21 @@ import { useState } from 'react'
 import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortable'
 import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
+import { createNewColumnAPI } from '~/apis'
+import { genneratePlaceholderCard } from '~/utils/formatter'
+import { cloneDeep } from 'lodash'
+import { updateCurrentActiveBoard, selectCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
-function ListColumns({ columns, createNewColumn, createNewCard, deleteColumnDetails }) {
+function ListColumns({ columns }) {
+
+  const dispatch = useDispatch()
+  const board = useSelector(selectCurrentActiveBoard)
+
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
   const toggleOpenNewColumnForm = () => { setOpenNewColumnForm(!openNewColumnForm)}
   const [newColumnTitle, setNewColumnTitle] = useState('')
+
   const addNewColumn = async () => {
     if (!newColumnTitle) {
       toast.error('Column title is required')
@@ -22,14 +32,33 @@ function ListColumns({ columns, createNewColumn, createNewCard, deleteColumnDeta
     const newColumnData = {
       title: newColumnTitle
     }
+
+    // Fuc này có nv gọi API tạo mới Column và làm lại dữ liệu State Board
+    const createColumn = await createNewColumnAPI({
+      ...newColumnData,
+      boardId: board._id
+    })
+
+    createColumn.cards = [genneratePlaceholderCard(createColumn)]
+    createColumn.cardOrderIds = [genneratePlaceholderCard(createColumn)._id]
+
+    // cập nhật lại state board
     /**
-     * Gọi lên props function createNewColumn nằm ở component cha cao nhất (board/_id.jsx)
-     * Lưu ý: về sau ở phần Advance sẽ đưa dữ liệu Board ra ngoài Redux Global Store,
-     * Thì lúc này chúng ta có thể gọi luôn API ở đây xong thay vì phải lần lượt gọi ngược lên những
-     * component cha phía trên. (đối với cpn con nằm càn sâu thì càng khổ)
-     * Với vệ sử dụng Redux như vậy thì code sẽ Clean chuẩn chỉnh hơn rất nhiều
-     * **/
-    await createNewColumn(newColumnData)
+     * Phía Fe chúng ta tự làm lại đúng state data board thay vì phải gọi lại API fetchBoardDetailsApi
+     * Lưu ý cahcs làm này phụ thuộc vào tùy chọn và đặc thù của dự án, có nơi thì Be sẽ hỗ trợ
+     * trẳ về luôn toàn bộ Board dù đây có là api tạo Column hay Card đi chăng nữa  **/
+    /** Vi phạm luật của Redux
+     * Đoạn này dính phải nối Object is not extensible khi chúng ta cố gắng push trực tiếp createColumn vào mảng column của board,
+     * nguyên nhân là do dữ liệu board đang lấy từ redux store,
+     *  mà dữ liệu trong redux store là bất biến (immutable)
+     * nên chúng ta không thể thay đổi trực tiếp nó được,
+     * mà phải tạo ra một bản sao mới của board rồi mới thay đổi được,
+    */
+    const newBoard = cloneDeep(board) // deep copy - copy sâu toàn bộ
+    newBoard.columns.push(createColumn) // push và chỉnh sửa bên ngoài reducer
+    newBoard.columnOrderIds.push(createColumn._id)
+    dispatch(updateCurrentActiveBoard(newBoard))
+
     toggleOpenNewColumnForm()
     setNewColumnTitle('')
   }
@@ -52,8 +81,6 @@ function ListColumns({ columns, createNewColumn, createNewCard, deleteColumnDeta
         {columns?.map( column => <Column
           key ={column._id}
           column ={column}
-          createNewCard ={createNewCard}
-          deleteColumnDetails ={deleteColumnDetails}
         />)}
         {!openNewColumnForm
           ? <Box onClick={toggleOpenNewColumnForm} sx ={{
