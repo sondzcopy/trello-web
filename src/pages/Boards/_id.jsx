@@ -9,24 +9,24 @@ import {
 } from '~/apis'
 import { cloneDeep } from 'lodash'
 // import { mockData } from '~/apis/mock-data'
-import { useEffect } from 'react'
+import { use, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
 import { fetchBoardDetailsAPI, updateCurrentActiveBoard, selectCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { useParams } from 'react-router-dom'
 function Board() {
   const dispatch = useDispatch()
   // ko dùng state của component nữa mà dùng state của redux.
   // const [board, setBoard] = useState(null)
   const board = useSelector(selectCurrentActiveBoard)
 
+  const { boardId } = useParams()
   useEffect(() => {
-    const boardId = '695e29a6f661842fa810691b'
     // call api
     dispatch(fetchBoardDetailsAPI(boardId))
-  }, [dispatch])
+  }, [dispatch, boardId])
 
   // Fuc này có nv gọi api và xử lý khi kéo thả Column xong xuôi
   /*** Khi di chuyển card trong cùng board:
