@@ -1,9 +1,8 @@
-import { Routes, Route, Navigate} from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import NotFound from '~/pages/404/NotFound'
 import Auth from '~/pages/Auth/Auth'
 import Board from '~/pages/Boards/_id'
 function App() {
-
   return (
     <Routes>
 
@@ -22,5 +21,4 @@ function App() {
     </Routes>
   )
 }
-
 export default App
