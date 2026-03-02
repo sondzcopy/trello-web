@@ -1,5 +1,7 @@
 import authorizaAxiosInstance from '~/utils/authorizaAxios'
 import { API_ROOT } from '~/utils/constants'
+import { toast } from 'react-toastify'
+import theme from '~/theme'
 
 // Board
 // đã move vào redux
@@ -41,6 +43,21 @@ export const deleteColumnDetailsAPI = async (columnId) => {
 // Cards
 export const createNewCardAPI = async (newCardData) => {
   const response = await authorizaAxiosInstance.post(`${API_ROOT}/v1/cards`, newCardData )
+
+  return response.data
+}
+
+export const registerUserAPI = async (data) => {
+  const response = await authorizaAxiosInstance.post(`${API_ROOT}/v1/users/register`, data)
+  toast.success('Đăng ký thành công! Vui lòng kiểm tra email để xác thực tài khoản',
+    { theme: 'colored' })
+  return response.data
+}
+// Cards
+export const verifyUserAPI = async (data) => {
+  const response = await authorizaAxiosInstance.post(`${API_ROOT}/v1/users/verify`, data )
+  toast.success('Xác thực tài khoản thành công! Bạn có thể đăng nhập ngay bây giờ',
+    { theme: 'colored' })
 
   return response.data
 }

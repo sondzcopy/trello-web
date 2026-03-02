@@ -10,12 +10,10 @@ import {
 import { cloneDeep } from 'lodash'
 // import { mockData } from '~/apis/mock-data'
 import { use, useEffect } from 'react'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import CircularProgress from '@mui/material/CircularProgress'
 import { fetchBoardDetailsAPI, updateCurrentActiveBoard, selectCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import PageLoadingSpinner from '~/components/Loading/PageLoadingSpinner'
 function Board() {
   const dispatch = useDispatch()
   // ko dùng state của component nữa mà dùng state của redux.
@@ -89,19 +87,7 @@ function Board() {
     })
   }
   if (!board) {
-    return (
-      <Box sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 2,
-        width: '100vw',
-        height: '100vh'
-      }}>
-        <CircularProgress />
-        <Typography>Loading Board...</Typography>
-      </Box>
-    )
+    return <PageLoadingSpinner caption="Loading Board..."/>
   }
   return (
     <Container disableGutters maxWidth = {false}>
