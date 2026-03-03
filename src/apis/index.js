@@ -55,7 +55,7 @@ export const registerUserAPI = async (data) => {
 }
 // Cards
 export const verifyUserAPI = async (data) => {
-  const response = await authorizaAxiosInstance.post(`${API_ROOT}/v1/users/verify`, data )
+  const response = await authorizaAxiosInstance.put(`${API_ROOT}/v1/users/verify`, data )
   toast.success('Xác thực tài khoản thành công! Bạn có thể đăng nhập ngay bây giờ',
     { theme: 'colored' })
 

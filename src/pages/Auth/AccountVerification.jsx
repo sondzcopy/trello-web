@@ -26,12 +26,14 @@ function AccountVerification() {
   if (!email || !token) {
     return <Navigate to = "/404" />
   }
+  console.log('first')
+  console.log('verified', verified)
   // Nếu đang trong quá trình verify thì hiển thị loading
-  if (verified) {
+  if (!verified) {
     return <PageLoadingSpinner caption='Đang xác thực tài khoản của bạn...' />
   }
   // Cuối cùng nếu ko gặp vấn đề gì + với verify thành công thì điều hướng về login cùng giá trị verifiedEmail
-
+  console.log('first')
   return <Navigate to = {`/login?verifiedEmail=${email}`} />
 }
 
