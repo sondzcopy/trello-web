@@ -5,7 +5,7 @@ import Board from '~/pages/Boards/_id'
 import AccountVerification from '~/pages/Auth/AccountVerification'
 import { useSelector } from 'react-redux'
 import { selectCurrentUser } from '~/redux/user/userSlice'
-
+import Settings from '~/pages/Settings/Settings'
 /*
   Giải pháp Clear code trong việc xác định các route nào cần đăng nhập tài khoản xong thì mới truy cập được
   Sử dụng <Outline /> của react-route-dom để hiển thị các child route xem các sử dụng trong App() bên dưới
@@ -30,6 +30,10 @@ function App() {
       <Route element={<ProtectedRoute user={currentUser} />}>
         <Route path='/boards/:boardId' element={<Board />} />
       </Route>
+      {/* User Setting */}
+      <Route path='/settings/account' element={<Settings />} />
+      <Route path='/settings/security' element={<Settings />} />
+
       {/* Authentication */}
       <Route path='/login' element={<Auth />} />
       <Route path='/register' element={<Auth />} />
