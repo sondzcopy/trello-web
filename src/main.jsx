@@ -12,10 +12,14 @@ import { store } from './redux/store.js'
 // Cấu hình react-router-dom với BrowserRouter
 // tính ra cách interceptorLoadingElements của a cũng hay, đó giờ e toàn debounce func, action, api thôi :))
 import { BrowserRouter } from 'react-router-dom'
-
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
+
 const persistor = persistStore(store)
+
+// Kỹ thuật Inject Store khi cần sử dụng biến redux store ở các file ngoài phạm vi component
+import { injectStore } from './utils/authorizaAxios.js'
+injectStore(store)
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter basename='/'>

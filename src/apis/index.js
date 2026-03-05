@@ -1,7 +1,7 @@
 import authorizaAxiosInstance from '~/utils/authorizaAxios'
 import { API_ROOT } from '~/utils/constants'
 import { toast } from 'react-toastify'
-import theme from '~/theme'
+// import theme from '~/theme'
 
 // Board
 // đã move vào redux
@@ -58,6 +58,12 @@ export const verifyUserAPI = async (data) => {
   const response = await authorizaAxiosInstance.put(`${API_ROOT}/v1/users/verify`, data )
   toast.success('Xác thực tài khoản thành công! Bạn có thể đăng nhập ngay bây giờ',
     { theme: 'colored' })
+
+  return response.data
+}
+
+export const refreshTokenAPI = async () => {
+  const response = await authorizaAxiosInstance.get(`${API_ROOT}/v1/users/refresh_token`)
 
   return response.data
 }
