@@ -6,6 +6,8 @@ import AccountVerification from '~/pages/Auth/AccountVerification'
 import { useSelector } from 'react-redux'
 import { selectCurrentUser } from '~/redux/user/userSlice'
 import Settings from '~/pages/Settings/Settings'
+import Boards from '~/pages/Boards'
+
 /*
   Giải pháp Clear code trong việc xác định các route nào cần đăng nhập tài khoản xong thì mới truy cập được
   Sử dụng <Outline /> của react-route-dom để hiển thị các child route xem các sử dụng trong App() bên dưới
@@ -29,6 +31,7 @@ function App() {
       {/* Protected Routed cta muốn là phải login thì mới vào được route */}
       <Route element={<ProtectedRoute user={currentUser} />}>
         <Route path='/boards/:boardId' element={<Board />} />
+        <Route path='/boards' element={<Boards />} />
       </Route>
       {/* User Setting */}
       <Route path='/settings/account' element={<Settings />} />
