@@ -67,3 +67,9 @@ export const refreshTokenAPI = async () => {
 
   return response.data
 }
+
+export const fetchBoardsAPI = async (searchPath) => {
+  const response = await authorizaAxiosInstance.get(`${API_ROOT}/v1/boards${searchPath}`)
+  // lưu ý axios sẽ trả kết quả về property của nó là data
+  return response.data
+}
