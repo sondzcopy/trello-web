@@ -26,7 +26,7 @@ function App() {
 
       {/* Redirect Route */}
       <Route path='/' element={
-        <Navigate to='/boards/695e29a6f661842fa810691b' replace = {true} />
+        <Navigate to='/boards' replace = {true} />
       } />
       {/* Protected Routed cta muốn là phải login thì mới vào được route */}
       <Route element={<ProtectedRoute user={currentUser} />}>
