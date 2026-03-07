@@ -9,7 +9,7 @@ import {
 } from '~/apis'
 import { cloneDeep } from 'lodash'
 // import { mockData } from '~/apis/mock-data'
-import { use, useEffect } from 'react'
+import { useEffect } from 'react'
 import { fetchBoardDetailsAPI, updateCurrentActiveBoard, selectCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'

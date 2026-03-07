@@ -1,5 +1,4 @@
 import React from 'react'
-import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { useColorScheme } from '@mui/material/styles'
 import Menu from '@mui/material/Menu'
@@ -27,12 +26,13 @@ import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
 
 import { useConfirm } from 'material-ui-confirm'
-import { createNewCardAPI, deleteColumnDetailsAPI } from '~/apis'
+import { createNewCardAPI, deleteColumnDetailsAPI, updateColumnDetailsAPI } from '~/apis'
 import { cloneDeep } from 'lodash'
 import { updateCurrentActiveBoard, selectCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { toast } from 'react-toastify'
+import ToggleFocusInput from '~/components/Form/ToggleFocusInput'
 
 function Column({ column }) {
   const dispatch = useDispatch()
@@ -129,6 +129,14 @@ function Column({ column }) {
     }).catch(() => {})
 
   }
+  const onUpdateColumnTitle = (newTitle) => {
+    // gọi API updatr Column và xử lý dl board trong redux
+    updateColumnDetailsAPI(column._id, { title: newTitle })
+    const newBoard = cloneDeep(board)
+    const columnToUpdate = newBoard.columns.find(c => c._id === column._id)
+    if (columnToUpdate) columnToUpdate.title = newTitle
+    dispatch(updateCurrentActiveBoard(newBoard))
+  }
   const { mode } = useColorScheme()
   return (
     <div ref={setNodeRef} style={dndKitColumnStyles} {...attributes} >
@@ -155,16 +163,11 @@ function Column({ column }) {
             justifyContent: 'space-between'
           }}
         >
-          <Typography
-            variant='h6'
-            sx={{
-              fontWeight: 'bold',
-              cursor: 'pointer',
-              fontSize: '1rem'
-            }}
-          >
-            {column?.title}
-          </Typography>
+          <ToggleFocusInput
+            value = {column?.title}
+            onChangedValue = {onUpdateColumnTitle}
+            data-no-dnd = "true"
+          />
           <Box>
             <Tooltip title='more-option'>
               <KeyboardArrowDownIcon
