@@ -32,6 +32,29 @@ export const activeBoardSlice = createSlice({
       // xl dữ liệu nếu cần thiết ...
       // update lại dữ liệu của cái curentActiveBoard
       state.currentActiveBoard = fullBoard
+    },
+    updateCardInBoards: (state, action) => {
+      // Update nested Data
+      const incomingCard = action.payload
+
+      // Tìm dần từ board -> Column -> card
+      const column = state.currentActiveBoard.columns.find(i => i._id === incomingCard.columnId)
+      if (column) {
+        const card = column.cards.find(i => i._id === incomingCard._id)
+        if (card) {
+          // card.title = incomingCard.title
+          /**
+           * Giải thích đoạn dưới, các bạn mới lần đầu sẽ dễ bị lú :D
+           * Đơn giản là dùng Object.keys để lấy toàn bộ các properties (keys) của incomingCard về một Array
+           * rồi forEach nó ra.
+           * Sau đó tùy vào trường hợp cần thì kiểm tra thêm còn không thì cập nhật ngược lại giá trị vào
+           * card luôn như bên dưới.
+           */
+          Object.keys(incomingCard).forEach(key => {
+            card[key] = incomingCard[key]
+          })
+        }
+      }
     }
   },
   // Extra Reducers: nơi xl dữ liệu bất đồng bộ
@@ -40,6 +63,9 @@ export const activeBoardSlice = createSlice({
     builder.addCase(fetchBoardDetailsAPI.fulfilled, (state, action) => {
       // action.payload ở đây chính là cái reponsse.data trả về từ API ở trong createAsyncThunk ở trên
       let board = action.payload
+      // Thành viên trong cái board sẽ là gộp lại của 2 mảng owner và member
+      board.FE_allUsers = board.owners.concat(board.members)
+
       board.columns = mapOrder(board.columns, board.columnOrderIds, '_id')
       board.columns.forEach(column => {
         // cần xử lý vấn đề kéo that vào column rống (vd 37.2 code hiện tại là ở 69)
@@ -61,7 +87,7 @@ export const activeBoardSlice = createSlice({
 // Action creators are generated for each case reducer function
 // Action: là nơi dành cho các component bên dưới gọi bằng dispatch() tới nó để cập nhật lại dữ liệu trong redux (chạy đồng bộ)
 // để ý ở trên thì không thấy properties actions đâu cả, bởi vì những cái action này đc thằng redux tạo tự dộng trên reducer.
-export const { updateCurrentActiveBoard } = activeBoardSlice.actions
+export const { updateCurrentActiveBoard, updateCardInBoards } = activeBoardSlice.actions
 
 // selector:  là nơi dành cho các component bên dưới gọi bằng  Hook useSelector() để lấy dữ liệu từ kho reduxra ngoài store để sử dụng
 export const selectCurrentActiveBoard = (state) => {
