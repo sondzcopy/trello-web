@@ -278,28 +278,35 @@ function Column({ column }) {
               <TextField
                 label="Enter card title ..."
                 type="text"
-                size='small'
+                size="small"
                 variant="outlined"
                 autoFocus
-                data-no-dnd = "true"
-                value = {newCardTitle}
-                onChange= {(e) => setNewCardTitle(e.target.value)}
-                sx = {{
-                  '& label': { color: 'text.primary' },
+                data-no-dnd="true"
+                value={newCardTitle}
+                onChange={(e) => setNewCardTitle(e.target.value)}
+                sx={{
+                  '& .MuiInputBase-root': {
+                    bgcolor: 'background.paper'
+                  },
                   '& input': {
-                    color: (theme) => theme.palette.primary.main,
-                    bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#333643' : 'white')
+                    color: 'text.primary'
+                  },
+                  '& label': {
+                    color: 'text.secondary'
                   },
                   '& label.Mui-focused': {
-                    color:  (theme) => theme.palette.primary.main
+                    color: 'primary.main'
                   },
                   '& .MuiOutlinedInput-root': {
-                    '& fieldset': { borderColor: (theme) => theme.palette.primary.main },
-                    '&:hover fieldset': { borderColor: (theme) => theme.palette.primary.main },
-                    '&.Mui-focused fieldset': { borderColor: (theme) => theme.palette.primary.main }
-                  },
-                  '& .MuiOutlinedInput-input': {
-                    borderRadius: 1
+                    '& fieldset': {
+                      borderColor: 'divider'
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'primary.main'
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'primary.main'
+                    }
                   }
                 }}
               />
@@ -312,7 +319,7 @@ function Column({ column }) {
                     boxShadow: 'none',
                     border: '0.5px solid',
                     borderColor: (theme) => theme.palette.success.main,
-                    '&:hover': { bgColor: (theme) => theme.palette.success.main }
+                    '&:hover': { backgroundColor: (theme) => theme.palette.success.main }
                   }}
                 >Add</Button>
                 < CloseIcon

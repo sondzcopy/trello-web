@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
@@ -38,7 +37,7 @@ import { toast } from 'react-toastify'
 import CardUserGroup from './CardUserGroup'
 import CardDescriptionMdEditor from './CardDescriptionMdEditor'
 import CardActivitySection from './CardActivitySection'
-
+import { updateCardInBoards } from '~/redux/activeBoard/activeBoardSlice'
 
 import { styled } from '@mui/material/styles'
 const SidebarItem = styled(Box)(({ theme }) => ({
@@ -82,11 +81,17 @@ function ActiveCard() {
     // B1: Cập nhật lại card đang Active trong Modal hiện tại
     dispatch(updateCurrentActiveCard(updatedCard))
     // B2: Cập nhật lại các bản ghi cardd trong cái activeBoard (nested data)
-    // dispatch(updateCardInBoards(updateData))
+    dispatch(updateCardInBoards(updatedCard))
+
+    return updatedCard
   }
 
   const onUpdateCardTitle = (newTitle) => {
     callApiUpdateCard({ title: newTitle.trim() })
+  }
+
+  const onUpdateCardDescription = (newDescription) => {
+    callApiUpdateCard({ description: newDescription })
   }
 
   const onUploadCardCover = (event) => {
@@ -100,6 +105,10 @@ function ActiveCard() {
     reqData.append('cardCover', event.target?.files[0])
 
     // Gọi API...
+    toast.promise(
+      callApiUpdateCard(reqData).finally(() => event.target.value = ''),
+      { pending: 'Updating...' }
+    )
   }
 
   return (
@@ -151,7 +160,7 @@ function ActiveCard() {
 
         <Grid container spacing={2} sx={{ mb: 3 }}>
           {/* Left side */}
-          <Grid xs={12} sm={9}>
+          <Grid size={{ xs: 12, sm: 9 }}>
             <Box sx={{ mb: 3 }}>
               <Typography sx={{ fontWeight: '600', color: 'primary.main', mb: 1 }}>Members</Typography>
 
@@ -166,7 +175,10 @@ function ActiveCard() {
               </Box>
 
               {/* Feature 03: Xử lý mô tả của Card */}
-              <CardDescriptionMdEditor />
+              <CardDescriptionMdEditor
+                cardDescriptionProp={activeCard?.description}
+                handleUpdateCardDescription = {onUpdateCardDescription}
+              />
             </Box>
 
             <Box sx={{ mb: 3 }}>
@@ -181,7 +193,7 @@ function ActiveCard() {
           </Grid>
 
           {/* Right side */}
-          <Grid xs={12} sm={3}>
+          <Grid size={{ xs: 12, sm: 3 }}>
             <Typography sx={{ fontWeight: '600', color: 'primary.main', mb: 1 }}>Add To Card</Typography>
             <Stack direction="column" spacing={1}>
               {/* Feature 05: Xử lý hành động bản thân user tự join vào card */}
