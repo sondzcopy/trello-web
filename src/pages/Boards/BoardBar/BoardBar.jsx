@@ -12,6 +12,8 @@ import Button from '@mui/material/Button'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import { useColorScheme } from '@mui/material/styles'
 import { capitalizeFirstLetter } from '~/utils/formatter'
+import BoardUserGroup from './BoardUserGroup'
+
 const MENU_STYLES = {
   color: 'white',
   bgcolor: 'transparent',
@@ -89,42 +91,8 @@ function BoardBar({ board }) {
         >
         Invite
         </Button>
-        <AvatarGroup
-          max={5}
-          sx = {{
-            '& .MuiAvatar-root': {
-              width: '34px',
-              height: '34px',
-              fontSize: '16px',
-              border: 'none',
-              color: 'white',
-              cursor: 'pointer',
-              '&:first-ò-type': { bgcolor: '#a4b0be' }
-            }
-          }}
-        >
-          <Tooltip title='Sondz'>
-            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
-          </Tooltip>
-          <Tooltip title='Sondz'>
-            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
-          </Tooltip>
-          <Tooltip title='Sondz'>
-            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
-          </Tooltip>
-          <Tooltip title='Sondz'>
-            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
-          </Tooltip>
-          <Tooltip title='Sondz'>
-            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
-          </Tooltip>
-          <Tooltip title='Sondz'>
-            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
-          </Tooltip>
-          <Tooltip title='Sondz'>
-            <Avatar alt="sondev" src="https://yt3.ggpht.com/yti/ANjgQV9iC6YbJR1h3VDcMykMSRkrTDR8BZqSVHItNa-icEkOPw=s88-c-k-c0x00ffffff-no-rj"/>
-          </Tooltip>
-        </AvatarGroup>
+        { /** xử lý hiển thị ds thành viên group */}
+        <BoardUserGroup />
       </Box>
     </Box>
   )
