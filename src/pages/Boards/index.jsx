@@ -93,7 +93,7 @@ function Boards() {
       <AppBar />
       <Box sx={{ paddingX: 2, my: 4 }}>
         <Grid container spacing={2}>
-          <Grid xs={12} sm={3}>
+          <Grid size={{ xs: 12, sm: 3 }}>
             <Stack direction="column" spacing={1}>
               <SidebarItem className="active">
                 <SpaceDashboardIcon fontSize="small" />
@@ -114,7 +114,7 @@ function Boards() {
             </Stack>
           </Grid>
 
-          <Grid xs={12} sm={9}>
+          <Grid size={{ xs: 12, sm: 9 }}>
             <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>Your boards:</Typography>
 
             {/* Trường hợp gọi API nhưng không tồn tại cái board nào trong Database trả về */}
@@ -126,7 +126,7 @@ function Boards() {
             {boards?.length > 0 &&
               <Grid container spacing={2}>
                 {boards.map(b =>
-                  <Grid xs={2} sm={3} md={4} key={b._id}>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }} key={b._id}>
                     <Card sx={{ width: '250px' }}>
                       {/* Ý tưởng mở rộng về sau làm ảnh Cover cho board nhé */}
                       {/* <CardMedia component="img" height="100" image="https://picsum.photos/100" /> */}
