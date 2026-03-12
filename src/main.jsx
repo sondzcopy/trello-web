@@ -22,8 +22,13 @@ const persistor = persistStore(store)
 import { injectStore } from './utils/authorizaAxios.js'
 injectStore(store)
 
+
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename='/'>
+  <BrowserRouter
+    basename='/' future={{
+      v7_startTransition: true,
+      v7_relativeSplatPath: true
+    }}>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
